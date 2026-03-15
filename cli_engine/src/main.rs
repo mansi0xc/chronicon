@@ -1,4 +1,10 @@
-use std::env;
+use std::{env, fs};
+
+mod cli;
+mod commits;
+mod objects;
+mod repo;
+mod storage;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -9,15 +15,11 @@ fn main() {
     }
 
     match args[1].as_str() {
-        "init" => init_repo(),
+        "init" => repo::init_repo(),
         "commit" => commit(),
         "log" => show_log(),
         _ => println!("Unknown command"),
     }
-}
-
-fn init_repo() {
-    println!("Initializing chronicon repository...");
 }
 
 fn commit() {
